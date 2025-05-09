@@ -3,6 +3,7 @@ To understand why this file is here, please read:
 
 https://cookiecutter-django.readthedocs.io/en/latest/5-help/faq.html#why-is-there-a-django-contrib-sites-directory-in-cookiecutter-django
 """
+
 from django.conf import settings
 from django.db import migrations
 
@@ -16,7 +17,8 @@ def _update_or_create_site_with_sequence(site_model, connection, domain, name):
             "name": name,
         },
     )
-    if created:
+
+    if connection.vendor == "postgresql" and created:
         # We provided the ID explicitly when creating the Site entry, therefore the DB
         # sequence to auto-generate them wasn't used and is now out of sync. If we
         # don't do anything, we'll get a unique constraint violation the next time a

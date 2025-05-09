@@ -274,3 +274,4 @@ django_boilerplate/media/
 .ipython/
 .env
 .envs/*
+db.sqlite3
